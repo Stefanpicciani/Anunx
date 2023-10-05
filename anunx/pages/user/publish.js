@@ -1,9 +1,10 @@
 import TemplateDefault from "../../src/templates/Default"
 
-import { Container, Typography, Box, TextField, Select, Button } from "@mui/material";
+import { Container, Typography, Box, TextField, Select, Button, IconButton } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import styles  from "./publish.module.css";
 import { useState } from "react";
+import { DeleteForever } from "@mui/icons-material";
 
 const Publish = () => {
     const [age, setAge] = useState('');
@@ -78,6 +79,31 @@ const Publish = () => {
                     <Typography component="div" variant="body2" align="left" color="primary">
                        A primeira imagem é a foto principal do seu anúncio!
                     </Typography> 
+                    <Box className={styles.thumbsContainer}>
+                        <Box className={styles.dropzone}>
+                            <Typography variant="body2" color="textPrimary">
+                                Clique para adicionar ou arraste a imagem para aqui.
+                            </Typography>
+                        </Box>       
+
+                         <Box
+                            className={styles.thumb}
+                            style={{ backgroundImage : "url(https://source.unsplash.com/random)"}}
+                        >      
+                            <Box className={styles.mainImage}>
+                                <Typography variant="body2" color="secondary">
+                                    Principal
+                                </Typography>
+                            </Box>
+                            <Box className={styles.mask}>
+                                <IconButton color="secondary">
+                                    <DeleteForever fontSize="large"/>
+                                </IconButton>
+                            </Box>
+                        </Box>                   
+                    </Box>
+
+                   
                 </Box>
             </Container>
 
