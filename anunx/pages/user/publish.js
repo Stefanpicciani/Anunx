@@ -1,14 +1,21 @@
 import TemplateDefault from "../../src/templates/Default"
 
-import { Container, Typography, Box, TextField } from "@mui/material";
+import { Container, Typography, Box, TextField, Select, Button } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
 import styles  from "./publish.module.css";
-
+import { useState } from "react";
 
 const Publish = () => {
+    const [age, setAge] = useState('');
+    const handleChangeCategory = (event) => {
+      setAge(event.target.value);
+    };
+
     
+
     return(
         <TemplateDefault>
-            <Container maxWidth="sm" className={styles.container}>
+            <Container maxWidth="sm" className={`${styles.container} ${styles.boxContainer}`}>
                 <Typography component="h1" variant="h2" align="center" color="primary">
                     Públicar anúncio
                 </Typography>
@@ -16,8 +23,8 @@ const Publish = () => {
                    Quanto mais melhor
                 </Typography>
             </Container>
-
-            <Container maxWidth="md" className={styles.container}>
+           
+            <Container maxWidth="md" className={styles.boxContainer}>
                 <Box className={styles.box}>
                     <Typography component="h6" variant="h6" align="left" color="primary">
                         Título do anúncio
@@ -28,6 +35,100 @@ const Publish = () => {
                         variant="standard"
                         fullWidth
                     />
+                    <br /><br />
+                      <Typography component="h6" variant="h6" color="textPrimary">
+                        Categoria
+                      </Typography>
+                     
+                      <Select
+                        variant="standard"
+                        labelId="demo-customized-select-label"
+                        id="demo-customized-select"
+                        value={age}
+                        fullWidth
+                        onChange={handleChangeCategory}     
+                        placeholder="Selecione"                                       
+                      >                        
+                        <MenuItem value="">
+                            <em>Selecione</em></MenuItem>
+                        <MenuItem value={1}>Bebê e Criança</MenuItem>
+                        <MenuItem value={2}>Agricultura</MenuItem>
+                        <MenuItem value={3}>Moda</MenuItem>
+                        <MenuItem value={4}>Carros, Motos e Barcos</MenuItem>
+                        <MenuItem value={5}>Serviços</MenuItem>
+                        <MenuItem value={6}>Lazer</MenuItem>
+                        <MenuItem value={7}>Animais</MenuItem>
+                        <MenuItem value={8}>Moveis, Casa e Jardim</MenuItem>
+                        <MenuItem value={9}>Imóveis</MenuItem>
+                        <MenuItem value={10}>Equipamentos e Ferramentas</MenuItem>
+                        <MenuItem value={11}>Celulares e Tablets</MenuItem>
+                        <MenuItem value={12}>Esporte</MenuItem>
+                        <MenuItem value={13}>Tecnologia</MenuItem>
+                        <MenuItem value={14}>Emprego</MenuItem>
+                        <MenuItem value={15}>Outros</MenuItem>
+                      </Select>                  
+                </Box>
+            </Container>
+
+            <Container maxWidth="md" className={styles.boxContainer}>
+                <Box className={styles.box}>
+                    <Typography component="h6" variant="h6" align="left" color="primary">
+                       Imagens
+                    </Typography> 
+                    <Typography component="div" variant="body2" align="left" color="primary">
+                       A primeira imagem é a foto principal do seu anúncio!
+                    </Typography> 
+                </Box>
+            </Container>
+
+            <Container maxWidth="md" className={styles.boxContainer}>
+                <Box className={styles.box}>
+                    <Typography component="h6" variant="h6" align="left" color="primary">
+                       Descrição
+                    </Typography> 
+                    <Typography component="div" variant="body2" align="left" color="primary">
+                       Escreva os detalhes do que está vendendo!
+                    </Typography> 
+                    <TextField 
+                        multiline
+                        rows={6}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Box>
+            </Container>
+
+            <Container maxWidth="md" className={styles.boxContainer}>
+                <Box className={styles.box}>
+                    <Typography component="h6" variant="h6" align="left" color="primary" gutterBottom>
+                      Dados de contato
+                    </Typography> 
+                    <TextField 
+                        label="Nome"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                    />
+                    <br/> <br/>
+                    <TextField 
+                        label="Email"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                    />
+                    <br/> <br/>
+                    <TextField 
+                        label="Telefone"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                    />
+                </Box>
+            </Container>
+
+            <Container maxWidth="md" className={styles.boxContainer}>
+                <Box textAlign="right">
+                   <Button variant="contained" color="primary">Públicar anúncio</Button>
                 </Box>
             </Container>
         </TemplateDefault>
@@ -35,3 +136,4 @@ const Publish = () => {
 }
 
 export default Publish
+
