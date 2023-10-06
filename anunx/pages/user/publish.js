@@ -10,7 +10,11 @@ import {
     Select,
     Button,
     MenuItem,
-    IconButton } from "@mui/material";
+    IconButton, 
+    FormControl,
+    InputLabel,
+    OutlinedInput, 
+    InputAdornment} from "@mui/material";
 import { DeleteForever } from "@mui/icons-material";
 import { useDropzone } from "react-dropzone";
 
@@ -161,6 +165,23 @@ const Publish = () => {
                         fullWidth
                         variant="outlined"
                     />
+                </Box>
+            </Container>
+
+            <Container maxWidth="md" className={styles.boxContainer}>
+                <Box className={styles.box}>
+                    <Typography component="h6" variant="h6" align="left" color="primary">
+                       Preço
+                    </Typography>                    
+                    <br/>
+                    <TextField
+                        fullWidth
+                        label="Valor"
+                        id="outlined-start-adornment"
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">€</InputAdornment>,
+                        }}
+                        />
                 </Box>
             </Container>
 
