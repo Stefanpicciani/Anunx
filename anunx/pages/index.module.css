@@ -1,0 +1,17 @@
+
+.searchContainer {
+   padding: 40px 10px 6px 10px ;
+   margin-bottom: 30px;
+}
+
+.searchBox {
+    display: flex;
+    justify-content: center; 
+    margin: 0 5rem;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+.cardMedia {
+    padding-top: 56%;
+}
