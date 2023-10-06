@@ -19,12 +19,13 @@
 .thumbsContainer {
         display: flex;
         margin-top: 15px;
+        flex-wrap: wrap;
 }
 
 .dropzone {
         width: 200px;
-        margin: 0 15px 15px 0;
         height: 150px;
+        margin: 0px 15px 15px 0px;
         background-color: rgb(242, 244, 275);
         border: 2px dashed black;       
         display: flex;
@@ -34,11 +35,13 @@
 }
 
 .thumb {
-        width: 200px;
+        position: relative;
+        width: 180px;
         height: 150px;
         background-size: cover;
-        background-image: center center;
-        position: relative;
+        background-position: center center;
+        /* background-image: center center; */
+        margin: 0px 15px 15px 0px;
 }
 
 .thumb:hover .mask {

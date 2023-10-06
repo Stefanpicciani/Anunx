@@ -1,13 +1,39 @@
-import TemplateDefault from "../../src/templates/Default"
-
-import { Container, Typography, Box, TextField, Select, Button, IconButton } from "@mui/material";
-import MenuItem from '@mui/material/MenuItem';
-import styles  from "./publish.module.css";
 import { useState } from "react";
+import TemplateDefault from "../../src/templates/Default"
+import styles  from "./publish.module.css";
+
+import {
+    Container,
+    Typography,
+    Box,
+    TextField,
+    Select,
+    Button,
+    MenuItem,
+    IconButton } from "@mui/material";
 import { DeleteForever } from "@mui/icons-material";
+import { useDropzone } from "react-dropzone";
 
 const Publish = () => {
     const [age, setAge] = useState('');
+    const [files, setFiles] = useState([])
+
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: 'image/*',
+        onDrop: (acceptedFile) => {
+            const newFiles = acceptedFile.map(file => {
+                return Object.assign(file, {
+                    preview: URL.createObjectURL(file)
+                })
+            })
+
+            setFiles([
+                ...files,
+                ...newFiles,
+            ]);
+        }
+    })
+
     const handleChangeCategory = (event) => {
       setAge(event.target.value);
     };
@@ -80,27 +106,38 @@ const Publish = () => {
                        A primeira imagem é a foto principal do seu anúncio!
                     </Typography> 
                     <Box className={styles.thumbsContainer}>
-                        <Box className={styles.dropzone}>
+                        <Box className={styles.dropzone} {...getRootProps()}>
+                            <input {...getInputProps()}/>
                             <Typography variant="body2" color="textPrimary">
                                 Clique para adicionar ou arraste a imagem para aqui.
                             </Typography>
                         </Box>       
 
-                         <Box
-                            className={styles.thumb}
-                            style={{ backgroundImage : "url(https://source.unsplash.com/random)"}}
-                        >      
-                            <Box className={styles.mainImage}>
-                                <Typography variant="body2" color="secondary">
-                                    Principal
-                                </Typography>
-                            </Box>
-                            <Box className={styles.mask}>
-                                <IconButton color="secondary">
-                                    <DeleteForever fontSize="large"/>
-                                </IconButton>
-                            </Box>
-                        </Box>                   
+                        {
+                            files.map((file, index) =>(
+                                <Box
+                                key={file.name}
+                                className={styles.thumb}
+                                style={{ backgroundImage : `url(${file.preview})`}}
+                            >      
+                                {
+                                    index === 0 ? 
+                                    <Box className={styles.mainImage}>
+                                        <Typography variant="body2" color="secondary">
+                                            Principal
+                                        </Typography>
+                                    </Box>
+                                  
+                                : null
+                                }
+                                <Box className={styles.mask}>
+                                        <IconButton color="secondary">
+                                            <DeleteForever fontSize="large"/>
+                                        </IconButton>
+                                    </Box> 
+                                </Box>       
+                            ))
+                        }                                   
                     </Box>
 
                    
