@@ -1,0 +1,31 @@
+
+@media screen and (max-width: 480px) {
+    .GridContainer {
+        padding: 40px 55px 40px 55px;
+    }
+  }
+
+   @media screen and (max-width: 1224px) {
+    .GridContainer {
+        padding: 70px;
+    }
+  }
+
+
+.borderTop {
+    border-top: 1px solid rgba(167, 167, 167, 0.658);
+    margin-top: 95px;    
+    margin-bottom: 55px;
+}
+
+.footer{
+    color:  rgba(100, 99, 99, 0.719);
+}
+
+.GridContainer {
+    padding: 20px 10px 65px 35px;
+}
+
+.Link {
+    text-decoration: none;
+}

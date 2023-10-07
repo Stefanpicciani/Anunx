@@ -23,7 +23,7 @@ const Publish = () => {
     const [files, setFiles] = useState([])
 
     const { getRootProps, getInputProps } = useDropzone({
-        accept: 'image/*',
+        accept: 'image/jpg, image/png',
         onDrop: (acceptedFile) => {
             const newFiles = acceptedFile.map(file => {
                 return Object.assign(file, {

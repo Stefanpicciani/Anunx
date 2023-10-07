@@ -9,7 +9,7 @@ import {
   Typography,
   Button
 } from "@mui/material"
-
+import Link from 'next/link'
 import styles from "./dashboard.module.css"
 
 
@@ -22,9 +22,11 @@ export default function Dashboard() {
           <Typography component="h1" variant="h2" align="center">
             Meus Anúncios
           </Typography>
-          <Button variant="contained" color="primary" className={styles.buttonAdd}>
-            Públicar novo anúncio
-          </Button>
+          <Link href="/user/publish" passHref className={styles.Link}>
+            <Button variant="contained" color="primary" className={styles.buttonAdd}>
+                Públicar novo anúncio
+            </Button>
+          </Link>          
       </Container>
       <Container maxWidth="md" className={styles.container}>
          <Grid container spacing={4}>
