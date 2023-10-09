@@ -1,7 +1,7 @@
 
-.searchContainer {
+.cardGrid {
    padding: 40px 10px 6px 10px ;
-   margin-bottom: 30px;
+   margin-bottom: 20px;
 }
 
 .searchBox {
@@ -12,6 +12,3 @@
     margin-top: 20px;
 }
 
-.cardMedia {
-    padding-top: 56%;
-}

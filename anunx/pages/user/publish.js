@@ -49,7 +49,7 @@ const Publish = () => {
 
     return(
         <TemplateDefault>
-            <Container maxWidth="sm" className={`${styles.container} ${styles.boxContainer}`}>
+            <Container maxWidth="sm" className={styles.boxContainer}>
                 <Typography component="h1" variant="h2" align="center" color="primary">
                     Públicar anúncio
                 </Typography>
