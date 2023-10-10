@@ -1,5 +1,5 @@
-import TemplateDefault from "../src/templates/Default";
-import styles from "./product.module.css";
+import TemplateDefault from "../../src/templates/Default";
+import styles from "./index.module.css";
 import {  
     Container,
     Grid,

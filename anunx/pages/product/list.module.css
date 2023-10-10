@@ -1,0 +1,13 @@
+.box {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.searchBox {
+    display: flex;
+    justify-content: center; 
+    /* margin: 0 5rem; */
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
