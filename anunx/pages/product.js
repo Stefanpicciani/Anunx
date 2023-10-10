@@ -11,6 +11,7 @@ import {
     CardMedia,
     Avatar,
  } from '@mui/material';
+ import Carousel from 'react-material-ui-carousel';
 
 
 const Product = () =>{
@@ -21,7 +22,37 @@ const Product = () =>{
                 <Grid container spacing={3}>
                     <Grid item xs={8}>
                         <Box className={styles.box}>
-                            Carrossel
+                            <Carousel
+                                autoPlay={false}
+                                animation="slide"
+                                navButtonsAlwaysVisible
+                                navButtonsProps={{
+                                    style: {
+                                        color: 'white'
+                                    }
+                                }}                            >
+                                <Card className={styles.card}>
+                                    <CardMedia 
+                                        className={styles.cardMedia}
+                                        image="https://source.unsplash.com/random?a=1"
+                                        title="Título da imagem"
+                                    />
+                                </Card>
+                                <Card className={styles.card}>
+                                    <CardMedia 
+                                        className={styles.cardMedia}
+                                        image="https://source.unsplash.com/random?a=2"
+                                        title="Título da imagem"
+                                    />
+                                </Card>
+                                <Card className={styles.card}>
+                                    <CardMedia 
+                                        className={styles.cardMedia}
+                                        image="https://source.unsplash.com/random?a=3"
+                                        title="Título da imagem"
+                                    />
+                                </Card>
+                            </Carousel>                           
                         </Box>
 
                         <Box className={styles.box} textAlign="left">
