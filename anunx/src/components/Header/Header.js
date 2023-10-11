@@ -14,25 +14,12 @@ import {
 } from "@mui/material";
 import Link from 'next/link';
 import { AccountCircle } from '@mui/icons-material';
+import styles from './Header.module.css'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    textDecoration: 'none',
-    color: theme.palette.secondary.main,
-  },
-  userName: {
-    marginLeft: 6,
-  },
-  linkStyle: {
-    textDecoration: 'none',
-    color: theme.palette.primary.main,
   }
 }));
 
@@ -47,23 +34,39 @@ export default function Header() {
       <AppBar position="static" elevation={3}>
         <Container maxWidth="lg">
           <Toolbar>  
-            <Link href="/" passHref className={classes.title}>
-              <Typography variant="h6" className={classes.title}>
+            <Link href="/" passHref className={styles.title}>
+              <Typography variant="h6" className={styles.title}>
                 Anunx
               </Typography>
-            </Link>                
+            </Link>         
+            <Link href="/product" passHref className={styles.title}>
+              <Typography variant="h6" className={styles.title}>
+                product
+              </Typography>
+            </Link>         
+            <Link href="/product/list" passHref className={styles.title}>
+              <Typography variant="h6" className={styles.title}>
+                listProducts
+              </Typography>
+            </Link>         
+            <Link href="/signin" passHref className={styles.title}>
+              <Typography variant="h6" className={styles.title}>
+                Login
+              </Typography>
+            </Link>         
+                           
             <Link href="/user/publish" passHref>
               <Button color="secondary" variant='outlined'>
                 Anunciar e vender
               </Button>
             </Link>        
-            <IconButton color='secondary' onClick={(e) => setAnchorUSerMenu(e.currentTarget)}>
+            <IconButton color='secondary' onClick={(e) => setAnchorUSerMenu(e.currentTarget)} className={styles.menuButton}>
               {
                 true === false 
                 ?  <Avatar src="" />
                 :  <AccountCircle />
               }        
-              <Typography variant='subtitle2' color='secondary' className={classes.userName}>
+              <Typography variant='subtitle2' color='secondary' className={styles.userName}>
                 Stefan Picciani  
               </Typography>    
             </IconButton>   
@@ -76,10 +79,10 @@ export default function Header() {
                 vertical: 'bottom',
               }}
             >
-              <Link href='/user/dashboard' passHref className={classes.linkStyle}>
+              <Link href='/user/dashboard' passHref className={styles.linkStyle}>
                 <MenuItem>Meus anúncios</MenuItem>              
               </Link>
-              <Link href='/user/publish' passHref className={classes.linkStyle}>
+              <Link href='/user/publish' passHref className={styles.linkStyle}>
                 <MenuItem>Publicar novo anúncio</MenuItem>              
               </Link>
               <Divider/>

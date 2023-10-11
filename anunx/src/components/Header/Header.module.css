@@ -1,0 +1,19 @@
+
+.title {
+    flex-grow: 1;   
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: #000000;
+}
+
+.userName {
+  margin-left: 8px;
+}  
+
+.menuButton {
+    margin-left: 8px;
+}
