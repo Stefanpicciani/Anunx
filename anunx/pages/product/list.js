@@ -5,11 +5,7 @@ import {
     Grid,
     Box,
     Typography,
-    Chip,
     Card as CardMUI,
-    CardHeader,
-    CardMedia,
-    Avatar,
     Paper,
     InputBase,
     IconButton,
@@ -22,7 +18,7 @@ const List = () => {
 
     return(
         <TemplateDefault>
-            <Container maxWidth="md">
+            <Container maxWidth="lg">
                <Grid container spacing={3}>
                     <Grid item xs={12} sm={12} md={12}>
                         <Paper component="form" className={styles.searchBox}>
@@ -50,21 +46,28 @@ const List = () => {
                         <Grid container spacing={4}>
                             <Grid item xs={12} sm={6} md={4}>
                                 <Card 
-                                    image={"https://source.unsplash.com/random"}
+                                    image={"https://source.unsplash.com/random?a=1"}
                                     title="Produto Y"
                                     subtitle="R$ 70,00"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6} md={4}>
                                 <Card 
-                                    image={"https://source.unsplash.com/random"}
+                                    image={"https://source.unsplash.com/random?a=2"}
                                     title="Produto Y"
                                     subtitle="R$ 70,00"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6} md={4}>
                                 <Card 
-                                    image={"https://source.unsplash.com/random"}
+                                    image={"https://source.unsplash.com/random?a=3"}
+                                    title="Produto Y"
+                                    subtitle="R$ 70,00"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Card 
+                                    image={"https://source.unsplash.com/random?a=4"}
                                     title="Produto Y"
                                     subtitle="R$ 70,00"
                                 />
