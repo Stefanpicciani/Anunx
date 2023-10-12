@@ -14,9 +14,11 @@ import {
     MenuItem,
     IconButton, 
     FormControl,
+    FormHelperText,
     InputLabel,
     OutlinedInput, 
-    InputAdornment} from "@mui/material";
+    InputAdornment,
+    Input} from "@mui/material";
 import { DeleteForever } from "@mui/icons-material";
 import { useDropzone } from "react-dropzone";
 
@@ -26,12 +28,15 @@ const validationSchema = yup.object().shape({
         .min(6, 'Digite no mínimo 6 caracteres!')
         .max(100, 'Valor máximo de 100 caracteres!')
         .required('Campo obrigatório!'),
+    category: yup.string().required('Campo obrigatório!'),
+    description: yup.string()
+    .min(10, 'Descrição mínima de 10 caracteres!')
+    .required('Campo obrigatório!'),
 });
 
 
 
-const Publish = () => {
-    const [age, setAge] = useState('');
+const Publish = () => {   
     const [files, setFiles] = useState([])
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -50,10 +55,7 @@ const Publish = () => {
         }
     })
 
-    const handleChangeCategory = (event) => {
-      setAge(event.target.value);
-    };
-
+    
     const handleRemoveFile = fileName => {
         const newFileState = files.filter(file => file.name !== fileName)
         setFiles(newFileState);
@@ -64,6 +66,7 @@ const Publish = () => {
             <Formik
                 initialValues={{
                     title: '',
+                    category: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
@@ -85,69 +88,73 @@ const Publish = () => {
                                         Públicar anúncio
                                     </Typography>
                                     <Typography component="h5" variant="h5" align="center" color="primary">
-                                    Quanto mais melhor
+                                        Quanto mais melhor
                                     </Typography>
                                 </Container>
                             
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
-                                        <Typography component="h6" variant="h6" align="left" color="primary">
-                                            Título do anúncio
-                                        </Typography> 
-                                        <TextField
-                                        onChange={handleChange}
-                                        name="title"
-                                        value={values.title}
-                                            label="ex.: Bicicleta aro 18 com garantia"
-                                            size="small"
-                                            variant="standard"
-                                            fullWidth
-                                            error={errors.title}
-                                            helperText={errors.title}
-                                        />
+
+                                        <FormControl error={errors.title} fullWidth>
+                                            <InputLabel className={styles.inputLabel}>Título do anúncio</InputLabel>
+                                            <Input
+                                                name="title"
+                                                value={values.title}
+                                                onChange={handleChange}                                                                                                           
+                                            />
+                                            <FormHelperText>
+                                                {errors.title}
+                                                {/* <Typography component="span" variant="span" color='red'>{errors.category}</Typography> */}
+                                            </FormHelperText>  
+                                        </FormControl>
+
                                         <br /><br />
-                                        <Typography component="h6" variant="h6" color="textPrimary">
-                                            Categoria
-                                        </Typography>
-                                        
-                                        <Select
-                                            variant="standard"
-                                            labelId="demo-customized-select-label"
-                                            id="demo-customized-select"
-                                            value={age}
-                                            fullWidth
-                                            onChange={handleChangeCategory}     
-                                            placeholder="Selecione"                                       
-                                        >                        
-                                            <MenuItem value="">
-                                                <em>Selecione</em></MenuItem>
-                                            <MenuItem value={1}>Bebê e Criança</MenuItem>
-                                            <MenuItem value={2}>Agricultura</MenuItem>
-                                            <MenuItem value={3}>Moda</MenuItem>
-                                            <MenuItem value={4}>Carros, Motos e Barcos</MenuItem>
-                                            <MenuItem value={5}>Serviços</MenuItem>
-                                            <MenuItem value={6}>Lazer</MenuItem>
-                                            <MenuItem value={7}>Animais</MenuItem>
-                                            <MenuItem value={8}>Moveis, Casa e Jardim</MenuItem>
-                                            <MenuItem value={9}>Imóveis</MenuItem>
-                                            <MenuItem value={10}>Equipamentos e Ferramentas</MenuItem>
-                                            <MenuItem value={11}>Celulares e Tablets</MenuItem>
-                                            <MenuItem value={12}>Esporte</MenuItem>
-                                            <MenuItem value={13}>Tecnologia</MenuItem>
-                                            <MenuItem value={14}>Emprego</MenuItem>
-                                            <MenuItem value={15}>Outros</MenuItem>
-                                        </Select>                  
+
+                                        <FormControl error={errors.category} fullWidth>
+                                            <InputLabel className={styles.inputLabel}>Categoria</InputLabel>
+                                            <Select
+                                                name="category"
+                                                value={values.category}
+                                                fullWidth
+                                                variant="standard"
+                                                placeholder="Selecione"                                       
+                                                onChange={handleChange}     
+                                            >   
+                                                <MenuItem value="" selected><em>Selecione</em></MenuItem>
+                                                <MenuItem value="Bebê e Criança">Bebê e Criança</MenuItem>
+                                                <MenuItem value="Agricultura">Agricultura</MenuItem>
+                                                <MenuItem value="Moda">Moda</MenuItem>
+                                                <MenuItem value="Carros, Motos e Barcos">Carros, Motos e Barcos</MenuItem>
+                                                <MenuItem value="Serviços">Serviços</MenuItem>
+                                                <MenuItem value="Lazer">Lazer</MenuItem>
+                                                <MenuItem value="Animais">Animais</MenuItem>
+                                                <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
+                                                <MenuItem value="Imóveis">Imóveis</MenuItem>
+                                                <MenuItem value="Equipamentos e Ferramentas">Equipamentos e Ferramentas</MenuItem>
+                                                <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
+                                                <MenuItem value="Esporte">Esporte</MenuItem>
+                                                <MenuItem value="Tecnologia">Tecnologia</MenuItem>
+                                                <MenuItem value="Emprego">Emprego</MenuItem>
+                                                <MenuItem value="Outros">Outros</MenuItem>
+                                            </Select>   
+                                            <FormHelperText>
+                                                {errors.category}                                               
+                                            </FormHelperText>     
+                                        </FormControl>                                                  
                                     </Box>
                                 </Container>
 
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
+
                                         <Typography component="h6" variant="h6" align="left" color="primary">
-                                        Imagens
+                                            Imagens
                                         </Typography> 
+
                                         <Typography component="div" variant="body2" align="left" color="primary">
-                                        A primeira imagem é a foto principal do seu anúncio!
+                                            A primeira imagem é a foto principal do seu anúncio!
                                         </Typography> 
+
                                         <Box className={styles.thumbsContainer}>
                                             <Box className={styles.dropzone} {...getRootProps()}>
                                                 <input {...getInputProps()}/>
@@ -181,35 +188,38 @@ const Publish = () => {
                                                     </Box>       
                                                 ))
                                             }                                   
-                                        </Box>
-
-                                    
+                                        </Box>                                    
                                     </Box>
                                 </Container>
 
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
-                                        <Typography component="h6" variant="h6" align="left" color="primary">
-                                        Descrição
-                                        </Typography> 
-                                        <Typography component="div" variant="body2" align="left" color="primary">
-                                        Escreva os detalhes do que está vendendo!
-                                        </Typography> 
-                                        <TextField 
-                                            multiline
-                                            rows={6}
-                                            fullWidth
-                                            variant="outlined"
-                                        />
+                                        <FormControl error={errors.description} fullWidth>
+                                            <InputLabel className={styles.inputLabel}>Escreva os detalhes do que está vendendo!</InputLabel>
+                                            <Input 
+                                                name="description"
+                                                multiline
+                                                rows={6}                                               
+                                                variant="outlined"                                                
+                                            />
+                                             <FormHelperText>
+                                                {errors.description}
+                                                {/* <Typography component="span" variant="span" color='red'>{errors.category}</Typography> */}
+                                            </FormHelperText>  
+                                        </FormControl>
+                                        
                                     </Box>
                                 </Container>
 
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
+
                                         <Typography component="h6" variant="h6" align="left" color="primary">
-                                        Preço
-                                        </Typography>                    
+                                            Preço
+                                        </Typography>    
+
                                         <br/>
+
                                         <TextField
                                             fullWidth
                                             label="Valor"
@@ -217,7 +227,7 @@ const Publish = () => {
                                             InputProps={{
                                                 startAdornment: <InputAdornment position="start">€</InputAdornment>,
                                             }}
-                                            />
+                                        />
                                     </Box>
                                 </Container>
 
@@ -251,7 +261,9 @@ const Publish = () => {
 
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box textAlign="right">
-                                    <Button type="submit" variant="contained" color="primary">Públicar anúncio</Button>
+                                        <Button type="submit" variant="contained" color="primary">
+                                            Públicar anúncio
+                                        </Button>
                                     </Box>
                                 </Container>
                             </form>
