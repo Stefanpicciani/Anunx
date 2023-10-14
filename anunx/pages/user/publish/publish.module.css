@@ -1,0 +1,16 @@
+
+.box {
+        background-color: #ffffff;
+        padding: 1rem;
+}
+
+.boxContainer {
+        padding-bottom: 2rem;
+}
+
+
+.inputLabel {
+        font-weight: 400;
+        color: #000000;
+}
+

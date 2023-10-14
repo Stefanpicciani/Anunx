@@ -1,0 +1,50 @@
+
+.thumbsContainer {
+    display: flex;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.dropzone {
+    width: 200px;
+    height: 150px;
+    margin: 0px 15px 15px 0px;
+    background-color: rgb(242, 244, 275);
+    border: 2px dashed black;       
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumb {
+    position: relative;
+    width: 180px;
+    height: 150px;
+    background-size: cover;
+    background-position: center center;
+    /* background-image: center center; */
+    margin: 0px 15px 15px 0px;
+}
+
+.thumb:hover .mask {
+    display: flex;
+}
+
+.mask {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainImage {
+    background-color: blue;
+    padding: 6px 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
