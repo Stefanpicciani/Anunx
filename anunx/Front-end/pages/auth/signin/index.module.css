@@ -23,3 +23,7 @@
 .containerButton {
     padding:0;
 }
+
+.errorMessage {
+    margin: 20px auto;
+}
