@@ -49,12 +49,16 @@ export default function Header() {
                 listProducts
               </Typography>
             </Link>         
-            <Link href="/signin" passHref className={styles.title}>
+            <Link href="/auth/signin" passHref className={styles.title}>
               <Typography variant="h6" className={styles.title}>
                 Login
               </Typography>
             </Link>         
-                           
+            <Link href="/auth/signup" passHref className={styles.title}>
+              <Typography variant="h6" className={styles.title}>
+                Cadastre-se
+              </Typography>
+            </Link>          
             <Link href="/user/publish" passHref>
               <Button color="secondary" variant='outlined'>
                 Anunciar e vender

@@ -1,0 +1,16 @@
+.box {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.container{
+    margin-bottom: 20px;
+}
+
+.formControl{
+    margin-bottom: 10px;
+}
+
+.submit {
+    margin: 15px 0;
+}

@@ -62,14 +62,14 @@ const Publish = () => {
                                     <Box className={styles.box}>
 
                                         <FormControl error={errors.title && touched.title} fullWidth>
-                                            <InputLabel className={styles.inputLabel}>Título do anúncio</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">Título do anúncio</InputLabel>
                                             <Input
                                                 name="title"
                                                 value={values.title}
                                                 onChange={handleChange}   
                                                 labe                                                                                                        
                                             />
-                                            <FormHelperText>
+                                            <FormHelperText  variant='standard'>
                                                 {errors.title && touched.title ? errors.title : null}
                                             </FormHelperText>  
                                         </FormControl>
@@ -77,7 +77,7 @@ const Publish = () => {
                                         <br /><br />
 
                                         <FormControl error={errors.category  && touched.category} fullWidth>
-                                            <InputLabel className={styles.inputLabel}>Categoria</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">Categoria</InputLabel>
                                             <Select
                                                 name="category"
                                                 value={values.category}
@@ -103,7 +103,7 @@ const Publish = () => {
                                                 <MenuItem value="Emprego">Emprego</MenuItem>
                                                 <MenuItem value="Outros">Outros</MenuItem>
                                             </Select>   
-                                            <FormHelperText>
+                                            <FormHelperText  variant='standard'>
                                                 {errors.category && touched.category ? errors.category : null}                                    
                                             </FormHelperText>     
                                         </FormControl>                                                  
@@ -148,7 +148,7 @@ const Publish = () => {
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
                                     <FormControl error={errors.price  && touched.price} fullWidth>
-                                            <InputLabel className={styles.inputLabel}>Preço de venda</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">Preço de venda</InputLabel>
                                             <Input 
                                                 name="price"
                                                 rows={6}                                               
@@ -156,7 +156,7 @@ const Publish = () => {
                                                 onChange={handleChange}
                                                 startAdornment={ <InputAdornment position="start">€</InputAdornment>}
                                             />
-                                             <FormHelperText>
+                                             <FormHelperText  variant='standard'>
                                                 {errors.price && touched.price ? errors.price : null}
                                             </FormHelperText>  
                                         </FormControl>
@@ -166,17 +166,17 @@ const Publish = () => {
                                 <Container maxWidth="md" className={styles.boxContainer}>
                                     <Box className={styles.box}>
                                         <Typography component="h6" variant="h6" align="left" color="primary" gutterBottom>
-                                        Dados de contato
+                                            Dados de contato
                                         </Typography> 
 
                                         <FormControl error={errors.name  && touched.name} fullWidth>
-                                            <InputLabel className={styles.inputLabel}>Nome</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">Nome</InputLabel>
                                             <Input
                                                 name="name"
                                                 value={values.name}
                                                 onChange={handleChange}                                                                                                           
                                             />
-                                            <FormHelperText>
+                                            <FormHelperText  variant='standard'>
                                                {errors.name && touched.name ? errors.name : null}
                                             </FormHelperText>  
                                         </FormControl>
@@ -184,13 +184,13 @@ const Publish = () => {
                                         <br/> <br/>
 
                                         <FormControl error={errors.email  && touched.email} fullWidth> 
-                                            <InputLabel className={styles.inputLabel}>E-mail</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">E-mail</InputLabel>
                                             <Input
                                                 name="email"
                                                 value={values.email}
                                                 onChange={handleChange}                                                                                                           
                                             />
-                                            <FormHelperText>
+                                            <FormHelperText  variant='standard'>
                                                 {errors.email && touched.email ? errors.email : null}
                                             </FormHelperText>  
                                         </FormControl>
@@ -199,13 +199,13 @@ const Publish = () => {
                                         <br/> <br/>
 
                                         <FormControl error={errors.phone  && touched.phone} fullWidth> 
-                                            <InputLabel className={styles.inputLabel}>Telefone</InputLabel>
+                                            <InputLabel className={styles.inputLabel} variant="standard">Telefone</InputLabel>
                                             <Input
                                                 name="phone"
                                                 value={values.phone}
                                                 onChange={handleChange}                                                                                                           
                                             />
-                                            <FormHelperText>
+                                            <FormHelperText  variant='standard'>
                                                 {errors.phone && touched.phone ? errors.phone : null}
                                             </FormHelperText>  
                                         </FormControl>
