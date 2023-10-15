@@ -10,19 +10,12 @@ import {
     Select,
     Button,
     MenuItem,
-    IconButton, 
     FormControl,
     FormHelperText,
     InputLabel,
     InputAdornment,
     Input} from "@mui/material";
-import { DeleteForever } from "@mui/icons-material";
 import FileUpload from "@/src/components/FileUpload/FileUpload";
-
-
-
-
-
 
 
 const Publish = () => {   

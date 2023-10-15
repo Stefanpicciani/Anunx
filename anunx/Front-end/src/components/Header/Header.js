@@ -81,6 +81,7 @@ export default function Header() {
               onClose={() => setAnchorUSerMenu(null)}
               anchorOrigin={{
                 vertical: 'bottom',
+                horizontal: 'center',
               }}
             >
               <Link href='/user/dashboard' passHref className={styles.linkStyle}>

@@ -1,4 +1,4 @@
-import TemplateDefault from '../../../src/templates/Default'
+import axios from 'axios';
 import {
     Box, 
     Paper,
@@ -9,13 +9,34 @@ import {
     FormControl,
     FormHelperText,
     Button,
-} from '@mui/material'
+    CircularProgress,
+} from '@mui/material';
 import styles from  './index.module.css';
 import { Formik } from 'formik';
-import { initialValues, validationSchema } from './formValues'
+import { initialValues, validationSchema } from './formValues';
+import TemplateDefault from '../../../src/templates/Default';
+import useToasty from  '../../../src/contexts/Toasty'
+import { useRouter } from 'next/router'
 
 
 const Signup = () => {
+    const { setToasty} = useToasty()
+    const router = useRouter()
+
+    const handleFormSubmit = async values => {
+        const response = await axios.post('/api/users', values)
+        
+        if((await response).data.success)
+        {
+           setToasty({
+            open: true,
+            severity: 'success',
+            text: 'Cadastro realizado com sucesso!'
+           })
+
+           router.push('/auth/signin')
+        }
+    }
 
     return(
         <TemplateDefault>
@@ -28,13 +49,11 @@ const Signup = () => {
                 </Typography>           
             </Container>
             <Container maxWidth="md">
-                <Box classname={styles.box} >
+                <Box>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-                        onSubmit={(values) => {
-                            console.log('Ok, form enviado: ', values)
-                        }}
+                        onSubmit={handleFormSubmit}
                     >
                         {
                             ({
@@ -42,7 +61,8 @@ const Signup = () => {
                                 values,
                                 errors,
                                 handleChange, 
-                                handleSubmit,                               
+                                handleSubmit,                     
+                                isSubmitting,         
                             }) => {
                                 return (
                                     <form className={styles.box} onSubmit={handleSubmit}>
@@ -98,18 +118,27 @@ const Signup = () => {
                                             </FormHelperText>  
                                         </FormControl>
 
-                                        <Button
-                                            fullWidth
-                                            type="submit"
-                                            variant="contained"
-                                            color="primary"
-                                            className={styles.submit}
-                                            align='left'
-                                            // disabled={isSubmiting}
-                                            >
-                                            Criar conta
-                                        </Button>
-                                   
+                                        <Container align='center' className={styles.containerButton}>
+                                        {
+                                            isSubmitting 
+                                            ? (
+                                                <CircularProgress className={styles.loading}/>
+                                            ) : (
+                                            
+                                                <Button
+                                                fullWidth
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                className={styles.submit}
+                                                align='left'
+                                                // disabled={isSubmiting}
+                                                >
+                                                Criar conta
+                                            </Button>
+                                            )
+                                        }
+                                        </Container>
                                     </form>
                                 )
                             }

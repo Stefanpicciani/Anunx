@@ -1,129 +1,115 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import {Typography} from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import {
+    Box, 
+    Paper,
+    Container,
+    Typography,
+    Input,
+    InputLabel,
+    FormControl,
+    FormHelperText,
+    Button,
+    CircularProgress,
+} from '@mui/material';
+import styles from  './index.module.css';
+import { Formik } from 'formik';
+import { initialValues, validationSchema } from './formValues';
+import TemplateDefault from '../../../src/templates/Default';
+import useToasty from  '../../../src/contexts/Toasty'
+import { useRouter } from 'next/router'
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-          Stefan&apos;s Development
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+
+const Signin = () => {
+    const { setToasty} = useToasty()
+    const router = useRouter()
+
+    const handleFormSubmit = async values => {
+        
+    }
+
+    return(
+        <TemplateDefault>
+            <Container maxWidth='sm' component='main' className={styles.container}>
+                <Typography component="h1" variant="h2" align='center' color="textPrimary">
+                    Entre na sua conta
+                </Typography>                               
+            </Container>
+            <Container maxWidth="md">
+                <Box>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleFormSubmit}
+                    >
+                        {
+                            ({
+                                touched,
+                                values,
+                                errors,
+                                handleChange, 
+                                handleSubmit,                     
+                                isSubmitting,         
+                            }) => {
+                                return (
+                                    <form className={styles.box} onSubmit={handleSubmit}>
+                                        <FormControl fullWidth error={errors.email  && touched.email}  className={styles.formControl}>  
+                                            <InputLabel  variant="standard">E-mail</InputLabel>
+                                            <Input
+                                                name="email"
+                                                type="email"
+                                                value={values.email}
+                                                onChange={handleChange}                                                                                                           
+                                            />
+                                            <FormHelperText  variant='standard'>
+                                                {errors.email && touched.email ? errors.email : null}
+                                            </FormHelperText>  
+                                        </FormControl>
+
+                                        <FormControl fullWidth error={errors.password  && touched.password} className={styles.formControl}> 
+                                            <InputLabel  variant="standard">Senha</InputLabel>
+                                            <Input
+                                                name="password"
+                                                type="password"
+                                                value={values.password}
+                                                autoComplete='off'
+                                                onChange={handleChange}                                                                                                           
+                                            />
+                                            <FormHelperText  variant='standard'>
+                                                {errors.password && touched.password ? errors.password : null}
+                                            </FormHelperText>  
+                                        </FormControl>
+                                      
+
+                                        <Container align='center' className={styles.containerButton}>
+                                        {
+                                            isSubmitting 
+                                            ? (
+                                                <CircularProgress className={styles.loading}/>
+                                            ) : (
+                                            
+                                                <Button
+                                                fullWidth
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                className={styles.submit}
+                                                align='left'
+                                                // disabled={isSubmiting}
+                                                >
+                                              Entrar
+                                            </Button>
+                                            )
+                                        }
+                                        </Container>
+                                    </form>
+                                )
+                            }
+                        }
+                    </Formik>
+                </Box>
+            </Container>
+        </TemplateDefault>
+    );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
-
-export default function Signin() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
-  );
-}
+export default Signin
