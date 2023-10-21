@@ -27,3 +27,17 @@
 .errorMessage {
     margin: 20px auto;
 }
+
+.orSeparator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8e8e8;
+    height: 1px;
+    margin: 50px 0;
+}
+
+.orSeparator span {    
+    background-color: #ffffff;   
+    padding: 0 30px;    
+}
