@@ -1,5 +1,6 @@
 import React,  {useState} from 'react';
 import { makeStyles } from '@mui/styles';
+import { useSession, signOut } from 'next-auth/client';
 
 import {
   AppBar,
@@ -24,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header() {
-  const classes = useStyles();
   const [anchorUserMenu, setAnchorUSerMenu] = useState(false)
+  const classes = useStyles();
+  const [ session ] = useSession();
 
   const openUserMenu = Boolean(anchorUserMenu)
 
@@ -59,21 +61,27 @@ export default function Header() {
                 Cadastre-se
               </Typography>
             </Link>          
-            <Link href="/user/publish" passHref>
+            <Link href={session ? "/user/publish" : "/auth/signin"} passHref>
               <Button color="secondary" variant='outlined'>
                 Anunciar e vender
               </Button>
-            </Link>        
-            <IconButton color='secondary' onClick={(e) => setAnchorUSerMenu(e.currentTarget)} className={styles.menuButton}>
-              {
-                true === false 
-                ?  <Avatar src="" />
-                :  <AccountCircle />
-              }        
-              <Typography variant='subtitle2' color='secondary' className={styles.userName}>
-                Stefan Picciani  
-              </Typography>    
-            </IconButton>   
+            </Link>    
+            {
+              session 
+                ? (
+                    <IconButton color='secondary' onClick={(e) => setAnchorUSerMenu(e.currentTarget)} className={styles.menuButton}>
+                      {
+                        session.user.image 
+                        ?  <Avatar src={session.user.image} />
+                        :  <AccountCircle />
+                      }        
+                      <Typography variant='subtitle2' color='secondary' className={styles.userName}>
+                        {session.user.name}
+                      </Typography>    
+                    </IconButton>   
+                ) : null
+            }    
+           
 
             <Menu
               anchorEl={anchorUserMenu}
@@ -91,7 +99,9 @@ export default function Header() {
                 <MenuItem>Publicar novo anúncio</MenuItem>              
               </Link>
               <Divider/>
-              <MenuItem>Sair</MenuItem>
+              <MenuItem onClick={() => signOut({
+                callbackUrl: '/'
+              })}>Sair</MenuItem>
             </Menu>
           </Toolbar>
         </Container>       
