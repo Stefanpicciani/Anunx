@@ -22,7 +22,7 @@ import useToasty from  '../../../src/contexts/Toasty'
 import { useRouter } from 'next/router'
 
 
-const Signin = () => {
+const Signin = ({ APP_URL }) => {
     const { setToasty} = useToasty()
     const router = useRouter()
     const [ session ] = useSession()
@@ -33,13 +33,13 @@ const Signin = () => {
         signIn('credentials', {
             email: values.email,
             password: values.password,
-            callbackUrl: 'http://localhost:3000/user/dashboard'
+            callbackUrl: `${APP_URL}/user/dashboard`
         })
     }
 
     const handleGoogleLogin = () =>{
         signIn('google', {
-            callbackUrl: 'http://localhost:3000/user/dashboard'
+            callbackUrl: `${APP_URL}/user/dashboard`
         })
     }
 
@@ -158,6 +158,12 @@ const Signin = () => {
             </Container>
         </TemplateDefault>
     );
+}
+
+Signin.getInitialProps = async function() {
+    return {
+        APP_URL: process.env.APP_URL
+    }
 }
 
 export default Signin
